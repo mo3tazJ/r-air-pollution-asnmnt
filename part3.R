@@ -1,10 +1,12 @@
 corr <- function(directory, threshold = 0){
+    # Creating complete obs Data frame from directory
     complete_dataframe <- complete(directory)
-    sub_data <- complete_dataframe[, which(nobs > threshold)]
-    placeholder <- numeric(length = 0L)
-    if(length(sub_data$id) == 0) {
-        placeholder
+    # sub-setting the qualified by threshold
+    qualified <- complete_dataframe[complete_dataframe$nobs > threshold,]
+    if(length(qualified$id) <= threshold) {
+        return(numeric(0))
     } else {
-        
+        #print("Yes")
+        return(str(qualified))
     }
 }
